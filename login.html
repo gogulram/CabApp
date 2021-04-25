@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Login-Page</title>
+    <style>
+        .login {
+            width: 350px;
+            height: 250px;
+            padding: 80px;
+            margin: auto;
+            margin-top: 20px;
+            border-radius: 10px;
+            background: lightgreen;
+        }
+        
+        body {
+            background-image: url(http://blog.olacabs.com/wp-content/uploads/2018/01/Ola-Fleet2.gif);
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+        }
+        
+        .ttle {
+            text-align: center;
+            color: blue;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="bgimg">
+        <div class="login">
+            <div class="ttle">
+                <h3>--------OLA-------</h3>
+                <h3>-------LOGIN PAGE-------</h3>
+            </div>
+            <form method="post" onsubmit="login()">
+                <label for="username">Enter Your username:</label><input type="text" name="username" id="username" placeholder="Enter UserName" required><br>
+                <br> <label for="passwrd">Enter Password: </label> <input type="password" name="passwrd" id="passwrd" placeholder="Enter Password" required> <br>
+                <br> <br> <input type="Submit" value="submit">
+                <button type="reset">reset</button>
+                <button type="button" onclick="hello()">click here</button>
+            </form>
+        </div>
+    </div>
+    <script>
+        function login() {
+            event.preventDefault();
+            // alert("login button clicked");
+            let username = document.querySelector("#username").value;
+            let password = document.querySelector("#passwrd").value;
+            let gender = document.querySelectorAll("gender").value;
+            console.log(gender);
+
+
+            if (username.length >= 8) {
+                alert("username is " + username);
+            } else {
+                alert("Sorry, Invalid Credentials");
+
+            }
+            if (!(password.length >= 8)) {
+                fail()
+            } else {
+                location.replace("cabtypes.html");
+            }
+        }
+
+        function hello() {
+
+            alert("Hi,have a nice ride");
+        }
+
+        function fail() {
+            alert("password should contain atleast 8 characters");
+        }
+    </script>
+
+</body>
+
+</html>

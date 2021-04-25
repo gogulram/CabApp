@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Price_Estimation</title>
+    <style type="text/css">
+        body {
+            background-color: lightgreen;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>----------PRICE ESTIMATION---------</h1>
+    <form action="Gst_Calculation.html" method="post">
+        <label for="cabtype">Choose your preferred cab type </label>
+        <select name="car" id="cars">
+			<option disabled selected>select cab type</option>            
+			<option value="Micro">Micro</option>
+			<option value="Mini">Mini</option>
+			<option value="Prime">Prime</option>
+		</select> <br> <br> <label for="kilometer">Enter the Kilometers </label>
+        <input type="number" name="num" id="kilometer" placeholder="km" min=1 max=1000 required> <br> <br>
+        <input type="submit" onclick="price()" value="submit">
+        <!-- <button onclick="price()">submit</button> -->
+    </form>
+    <br>
+    <b>Total amount for this ride is <span id="price"> </span></b>
+    <br><br>
+    <a href="Gst_Calculation.html">Next Step</a>
+    <script>
+        function price() {
+            event.preventDefault();
+            let km = document.querySelector("#kilometer").value;
+            let cabtype = document.querySelector("#cars").value;
+            console.log(km);
+            console.log(cabtype);
+            localStorage.setItem("cartype", cabtype);
+            localStorage.setItem("kilometers", km);
+            check(km, cabtype);
+        }
+
+        function check(km, cabtype) {
+            if (km > 0) {
+                if (cabtype == "Micro") {
+                    let val = km * 10;
+                    localStorage.setItem("textvalue1", val);
+                    console.log(val);
+                } else if (cabtype == "Mini") {
+                    let val = km * 15;
+                    console.log(val)
+                    localStorage.setItem("textvalue1", val);
+
+                } else if (cabtype == "Prime") {
+                    let val = km * 20;
+                    localStorage.setItem("textvalue1", val);
+                    console.log(val);
+                }
+                //  let price = price1.pricecalculator(km, cabtype);
+                //document.writeln(val);
+                document.querySelector("#price").innerHTML = localStorage.getItem("textvalue1");
+
+            } else {
+                alert("Please enter a valid km");
+            }
+        }
+
+        // let val = 0;
+
+        // function pricecalculator(km, cabtype) {
+        //     switch (cabtype) {
+        //         case "Micro":
+        //             let val = micro(km);
+        //             document.getElementById("res").innerHTML = price;
+        //             console.log(val);
+        //             break;
+        //         case "Mini":
+        //             let val = mini(km);
+        //             document.getElementById("res").innerHTML = price;
+        //             break;
+        //         case "Prime":
+        //             let val = prime(km);
+        //             document.getElementById("res").innerHTML = price;
+        //             break;
+        //         default:
+        //     }
+        // class price1 {
+        //     static micro(km) {
+        //         return km * 10;
+
+        //         //console.log(price);
+        //     }
+
+        //     static mini(km) {
+
+        //         return km * 15;
+        //     }
+
+        //     static prime(km) {
+
+        //         return km * 20;
+        //     }
+
+
+        //     static pricecalculator(km, cabtype) {
+        //         if (cabtype == "micro") {
+        //             let val = price1.micro(km);
+        //             console.log(val);
+        //         } else if (cabtype === "Mini") {
+        //             let val = price1.mini(km);
+
+        //         } else if (cabtype === "Prime") {
+        //             let val = price1.prime(km);
+        //         }
+        //         return val;
+        //         //console.log(val);
+        //     }
+        // }
+
+        // console.log(price);
+    </script>
+
+</body>
+
+</html>

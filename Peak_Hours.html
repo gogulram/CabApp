@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="ISO-8859-1" content="Peak hour calculation">
+    <title>Peak_hours</title>
+    <style>
+        body {
+            background-color: violet;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>----------PEAK HOUR CALCULATION---------</h1>
+    <h1>Enter the Picup time:</h1>
+
+
+    <br>
+    <b>Amount for Peak hour is <span id="peakval"></span></b>
+    <br>
+    <b>Amount after peak hour price added is <span id="amntafterpeak"></span></b>
+    <br>
+
+
+    <p><b>If the pickup time is between 5 PM and 7 PM the 1.25 percentage of total amount is added with the price.</b></p>
+    <a href="Senior_Citizen.html">Click here to senior citizen calculation</a>
+    <script>
+        var picuptime = localStorage.getItem("picUpHour");
+        var currtime = localStorage.getItem("currentHour");
+        var Amount = parseInt(localStorage.getItem("textvalue1"));
+        console.log("pictime-", typeof(Amount));
+
+        var peakamount;
+        var amntafterpeak;
+        var val;
+        if ((picuptime >= 17) && (picuptime <= 19)) {
+            peakamount = ((Amount * 1.25) / 100);
+            console.log(peakamount);
+            localStorage.setItem("peakprice", peakamount);
+            val = parseFloat(Amount) + parseFloat(peakamount);
+            localStorage.setItem("val1", val);
+            console.log(localStorage.getItem("val1"));
+
+
+            document.getElementById("peakval").innerHTML = localStorage.getItem("peakprice");
+            document.getElementById("amntafterpeak").innerHTML = localStorage.getItem("val1");
+        } else {
+            document.getElementById("peakval").innerHTML = 0;
+            document.getElementById("amntafterpeak").innerHTML = 0;
+
+        }
+    </script>
+</body>
+
+</html>

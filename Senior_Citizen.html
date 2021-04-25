@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Senior_Citizen</title>
+    <style>
+        body {
+            background-color: lightgrey;
+            text-align: center;
+        }
+    </style>
+
+
+</head>
+
+<body>
+    <h1>---------SENIOR CITIZEN----------</h1>
+    <label for="dob">Enter your date of birth: </label>
+    <input type="date" id="dob">
+    <br><br>
+    <b>Amount for the SeniorCitizen is <span id="seniorCitizen"></span></b>
+    <br>
+    <p><b> 50% of Total amount will be reduced for Senior Citizen</b> </p>
+    <p><b>----THANKYOU-----</b></p>
+
+    <script>
+        var dob;
+        var birthYear;
+        let curentYear;
+        let age;
+        let amount;
+
+
+        document.getElementById("dob").onchange = function() {
+            dob = document.getElementById("dob").value;
+            birthYear = parseInt(dob.slice(0, 4));
+            curentYear = parseInt(new Date().getFullYear());
+            age = ageCalculator(birthYear, curentYear);
+            if (isValidSenior(age)) {
+
+                seniorCitizenPrice();
+            } else {
+                document.getElementById("seniorCitizen").innerHTML = 0;
+                alert("Not a senior Citizen");
+            }
+            console.log("dob : ", dob);
+        }
+
+        function ageCalculator(birthYear, currentYear) {
+            return curentYear - birthYear;
+
+        }
+
+        function isValidSenior(age) {
+            if (age >= 60) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        function seniorCitizenPrice() {
+            amount = localStorage.getItem("textvalue1");
+            amount /= 2;
+            document.getElementById("seniorCitizen").innerHTML = amount;
+            console.log("amount", amount);
+
+        }
+    </script>
+</body>
+
+</html>

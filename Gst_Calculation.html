@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Gst_Calculation</title>
+    <style>
+        body {
+            background-color: greenyellow;
+            text-align: center;
+        }
+    </style>
+
+</head>
+
+<body>
+    <h1>----------GST CALCULATION---------</h1>
+    <p> GST (7%) of total amount will be added </p>
+    <br> Total amount before GST is <span id="amt"></span>
+    <br>
+    <p>Gst for this ride is <span id="gst"></span>
+        <br>
+        <p>Amount after gst added is <span id="totalamt"></span></p>
+
+        <br><br>
+        <a href="Booking.html">click here to book </a>
+</body>
+<script>
+    let amt = localStorage.getItem("textvalue1");
+    let gst = (7 * amt) / 100.0;
+    let total = parseFloat(amt) + parseFloat(gst);
+    localStorage.setItem("gstprice", gst);
+    localStorage.setItem("totalamount", total)
+    document.getElementById("amt").innerHTML = localStorage.getItem("textvalue1");
+    document.getElementById("gst").innerHTML = localStorage.getItem("gstprice");
+    document.getElementById("totalamt").innerHTML = localStorage.getItem("totalamount");
+</script>
+
+</html>

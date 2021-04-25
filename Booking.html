@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Ticket_Booking</title>
+    <style>
+        body {
+            background-color: lightgreen;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>----------BOOKING PAGE---------</h1>
+    <form action="Peak_Hours.html" method="post">
+        <!-- <label for="cabtype">Choose your preferred cabtype </label>
+        <select name="cars" id="cars">
+            <option disabled value="select">select any car type</option>
+			<option value="Micro">Micro</option>
+			<option value="Mini">Mini</option>
+			<option value="Prime">Prime</option>
+		</select> -->
+        <br> <br> <label for="jdate">Enter your Journey Start Date </label>
+        <input type="date" id="jdate" value="2021-04-22"> <br>
+        <p><span id="j"></span></p>
+        <br> <label for="pictime">Select your picup Time</label>
+        <input type="time" id="picuptime" value="19:01:00" id="picuptime">
+        <p><span id="p"></span></p><br>
+        <label for="gender"> Gender: </label><br> <input type="radio" id="male" name="gender" value="male"> <label for="male">Male</label> <input type="radio" id="female" name="gender" value="female"> <label for="female">Female</label>
+        <input type="radio" id="other" name="gender" value="other"> <label for="other">Other</label>
+        <br><br>
+        <input type="submit">
+    </form>
+    <script>
+        var journey;
+        var journeyDate;
+        var journeyMonth;
+        var journeyYear;
+        var current;
+        var currentDate;
+        var currentMonth;
+        var currentYear;
+        var currentHour;
+        var currentTime;
+        var picTime;
+        var currentMin;
+        var picUpHour;
+        var picUpMin;
+        current = new Date;
+
+        document.getElementById("jdate").onchange = function() {
+            var journey = document.querySelector("#jdate").value;
+
+            var journeyDate = parseInt(journey.slice(8, 10));
+            var journeyMonth = parseInt(journey.slice(5, 7));
+            var journeyYear = parseInt(journey.slice(0, 4));
+
+            currentDate = parseInt(new Date().getDate());
+            currentMonth = parseInt(new Date().getMonth()) + 1;
+            currentYear = parseInt(new Date().getFullYear());
+            if ((journeyDate >= currentDate) && (journeyMonth >= currentMonth) && (journeyYear >= currentYear)) {
+                alert("its a valid journey date, You can continue");
+                document.getElementById("j").innerHtml = "its a valid journey date, You can continue";
+
+            } else {
+                alert("sorry,Not a valid date");
+            }
+            console.log(journey);
+            console.log(journeyDate);
+            console.log(journeyMonth);
+            console.log(journeyYear);
+            console.log(currentMonth);
+            console.log("year ", currentYear);
+            console.log(" date ", currentDate);
+
+        }
+        document.getElementById("picuptime").onchange = function() {
+            picTime = document.getElementById("picuptime").value;
+            currentHour = parseInt(new Date().getHours());
+            currentMin = parseInt(new Date().getMinutes());
+
+            picUpHour = parseInt(picTime.slice(0, 2));
+            picUpMin = parseInt(picTime.slice(3, 6));
+            localStorage.setItem("picUpHour", picUpHour);
+            localStorage.setItem("picUpMin", picUpMin);
+            localStorage.setItem("currTime", currentHour);
+            if ((picUpHour >= currentHour)) {
+                document.getElementById("p").innerHTML = "Cab available in this time";
+            } else {
+                alert("Not a valid Time");
+            }
+            console.log(currentHour);
+            console.log(currentMin);
+            console.log(picUpHour);
+            console.log(picUpMin);
+        }
+    </script>
+
+
+</body>
